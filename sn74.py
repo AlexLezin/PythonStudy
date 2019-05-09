@@ -24,7 +24,7 @@ def askForAction():
         elif ans1 == "Clear":
                 clearAll()
         elif ans1 == "Pattern":
-                lightPattern([0, 0, 1, 0, 0, 1, 0, 0])
+                lightPattern([1, 0, 1, 1, 1, 1, 0, 1])
         else:
                 print("Invalid input")
                 sys.exit()
@@ -40,9 +40,7 @@ def lightPattern(pattern: [int]):
                         #time.sleep(0.1)
                         IO.output(clock_pin, 0)            # pull CLOCK pin down, to send a rising edge
                        # time.sleep(0.1)
-                        IO.output(latch_pin, 1)            # pull the SHIFT pin high to put the 8 bit data out parallel
-                        #time.sleep(0.1)
-                        IO.output(latch_pin, 0) 
+                       
                 elif i == 0:
                         IO.output(data_pin, 0)
                         #time.sleep(0.1)
@@ -50,10 +48,12 @@ def lightPattern(pattern: [int]):
                         #time.sleep(0.1)
                         IO.output(clock_pin, 0)            # pull CLOCK pin down, to send a rising edge
                         #time.sleep(0.1)
-                        IO.output(latch_pin, 1)            # pull the SHIFT pin high to put the 8 bit data out parallel
+                        #IO.output(latch_pin, 1)            # pull the SHIFT pin high to put the 8 bit data out parallel
                         #time.sleep(0.1)
-                        IO.output(latch_pin, 0) 
-                        
+                        #IO.output(latch_pin, 0) 
+        IO.output(latch_pin, 1)            # pull the SHIFT pin high to put the 8 bit data out parallel
+                        #time.sleep(0.1)
+        IO.output(latch_pin, 0) 
 
 def lightUp(ledNum: int):
         IO.output(data_pin, 1)            # pull up the data pin for every bit.
@@ -83,13 +83,13 @@ def lightDown(ledNum: int):
 def clearAll():
         for i in range(8):
                 IO.output(data_pin, 0)            # clear the DATA pin, to send 0
-                time.sleep(0.1)            # wait for 100ms
+                time.sleep(0.01)            # wait for 100ms
                 IO.output(clock_pin, 1)            # pull CLOCK pin high
-                time.sleep(0.1)
+                time.sleep(0.01)
                 IO.output(clock_pin, 0)            # pull CLOCK pin down, to send a rising edge
                 IO.output(data_pin, 0)            # keep the DATA bit low to keep the countdown
                 IO.output(latch_pin, 1)            # pull the SHIFT pin high to put the 8 bit data out parallel
-                time.sleep(0.1)
+                time.sleep(0.01)
                 IO.output(latch_pin, 0)
 
 while True:

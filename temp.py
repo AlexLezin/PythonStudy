@@ -1,10 +1,10 @@
 lst = [1, 0, 0, 1, 0, 1, 1, 0]
-srg = ''
+srg = '11101010101'
 
-for i in lst:
-	srg = srg + str(i)
+#for i in lst:
+	#srg = srg + str(i)
 	
-print(srg)
+#print(srg)
 
 lst2 =[]
 for i in srg:
@@ -15,3 +15,4 @@ print(lst2)
 lst2.reverse()
 
 print(lst2)
+
